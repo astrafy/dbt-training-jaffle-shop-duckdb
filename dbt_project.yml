@@ -1,0 +1,68 @@
+# Nams your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: "addastra_dbt_demo"
+version: "1.1.1"
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: "addastra"
+
+# These configurations specify where dbt should look for different types of files.
+# The `source-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+model-paths: ["models"]
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target" # directory which will store compiled SQL files
+clean-targets: # folders to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+  - "logs"
+
+require-dbt-version: "=1.1.1"
+
+quoting:
+  database: false
+  schema: false
+  identifier: false
+
+vars:
+  'dbt_date:time_zone': "Europe/Paris"
+
+models:
+  addastra_dbt_demo:
+    +pre-hook:
+      - '{{ dl_macros.check_dataset_existence() }}'
+    +persist_docs:
+      relation: true
+      columns: true
+    jaffle_shop:
+      +tags:
+        - jaffle_shop
+      staging:
+        +materialized: table
+      vault_client:
+        +materialized: table
+
+    billing:
+      +tags:
+        - billing
+      staging:
+        +materialized: table
+      vault_client:
+        +materialized: table
+
+seeds:
+  addastra_dbt_demo:
+    +persist_docs:
+      relation: true
+      columns: true
+    jaffle_shop:
+      +tags: jaffle_shop
+      mapping_iot_devices:
+        +enabled: true

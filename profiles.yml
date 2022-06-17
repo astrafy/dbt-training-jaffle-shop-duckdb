@@ -1,0 +1,34 @@
+config:
+  partial_parse: true
+  use_colors: true
+  printer_width: 80
+  send_anonymous_usage_stats: false
+
+addastra:
+  target: sbx
+  outputs:
+    sbx:
+      type: bigquery
+      method: oauth
+      project: billing-addastra
+      execution_project: billing-addastra
+      schema: na
+      threads: 4
+      timeout_seconds: 300
+      location: EU
+      priority: interactive
+      retries: 1
+      impersonate_service_account: sa-composer-sbx@ric-eu-dl-ops-dev-nprd.iam.gserviceaccount.com
+
+    prd:
+      type: bigquery
+      method: oauth
+      project: billing-addastra
+      execution_project: billing-addastra
+      schema: na
+      threads: 4
+      timeout_seconds: 300
+      location: EU
+      priority: interactive
+      retries: 1
+      impersonate_service_account: sa-composer-sbx@ric-eu-dl-ops-dev-nprd.iam.gserviceaccount.com
