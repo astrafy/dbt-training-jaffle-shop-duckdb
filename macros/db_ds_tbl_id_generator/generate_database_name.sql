@@ -27,8 +27,8 @@
     {% elif node.resource_type == 'analysis' %} {{- target.database | trim -}}
 
     {# SANDBOX (target: sbx) #}
-    
-    {% elif is_sandbox %} 
+
+    {% elif is_sandbox %}
       {%- if   is_layer_staging -%}         {{- 'dbt-demo-aaa' -}}
       {%- elif is_layer_data_warehouse -%}  {{- 'dbt-demo-aaa'-}}
       {%- elif is_layer_datamart -%}        {{- 'dbt-demo-aaa' -}}

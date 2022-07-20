@@ -25,4 +25,3 @@ provider "google" {
 provider "google-beta" {
   # Configuration options
 }
-
