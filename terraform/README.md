@@ -9,14 +9,14 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_google"></a> [google](#requirement\_google) | 4.11.0 |
-| <a name="requirement_google-beta"></a> [google-beta](#requirement\_google-beta) | 4.11.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | 4.29.0 |
+| <a name="requirement_google-beta"></a> [google-beta](#requirement\_google-beta) | 4.29.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.11.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 4.29.0 |
 | <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
 
 ## Modules
@@ -27,7 +27,7 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [google_container_node_pool.dbt](https://registry.terraform.io/providers/hashicorp/google/4.11.0/docs/resources/container_node_pool) | resource |
+| [google_container_node_pool.dbt](https://registry.terraform.io/providers/hashicorp/google/4.29.0/docs/resources/container_node_pool) | resource |
 | [terraform_remote_state.gke_internal](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
 ## Inputs
