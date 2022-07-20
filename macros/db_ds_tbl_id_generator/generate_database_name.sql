@@ -29,10 +29,10 @@
     {# SANDBOX (target: sbx) #}
     
     {% elif is_sandbox %} 
-      {%- if   is_layer_staging -%}         {{- 'ric-eu-dl-sa-dev-nprd' -}}
-      {%- elif is_layer_data_warehouse -%}  {{- 'ric-eu-dl-vc-dev-nprd' -}}
-      {%- elif is_layer_datamart -%}        {{- 'ric-eu-dl-cl-rev-etl-dev-nprd' -}}
-      {%- elif is_seeds -%}                 {{- 'ric-eu-dl-sa-dev-nprd' -}}
+      {%- if   is_layer_staging -%}         {{- 'dbt-demo-aaa' -}}
+      {%- elif is_layer_data_warehouse -%}  {{- 'dbt-demo-aaa'-}}
+      {%- elif is_layer_datamart -%}        {{- 'dbt-demo-aaa' -}}
+      {%- elif is_seeds -%}                 {{- 'dbt-demo-aaa' -}}
       {%- elif is_test -%}                  {{- target.database | trim -}}
       {%- else -%}                          {{ exceptions.raise_compiler_error(error_unresolve_message) }}
       {%- endif -%}
@@ -40,20 +40,20 @@
 
     {# UAT (target: uat) #}
     {% elif is_uat %}
-      {%- if   is_layer_staging -%}         {{- 'ric-eu-dl-sa-dev-nprd' -}}
-      {%- elif is_layer_data_warehouse -%}  {{- 'ric-eu-dl-vc-dev-nprd' -}}
-      {%- elif is_layer_datamart -%}        {{- 'ric-eu-dl-cl-rev-etl-dev-nprd' -}}
-      {%- elif is_seeds -%}                 {{- 'ric-eu-dl-sa-dev-nprd' -}}
+      {%- if   is_layer_staging -%}         {{- 'dbt-demo-aaa' -}}
+      {%- elif is_layer_data_warehouse -%}  {{- 'dbt-demo-aaa' -}}
+      {%- elif is_layer_datamart -%}        {{- 'dbt-demo-aaa' -}}
+      {%- elif is_seeds -%}                 {{- 'dbt-demo-aaa' -}}
       {%- elif is_test -%}                  {{- target.database | trim -}}
       {%- else -%}                          {{ exceptions.raise_compiler_error(error_unresolve_message) }}
       {%- endif -%}
 
     {# PRD (target: prd) #}
     {% elif is_uat %}
-      {%- if   is_layer_staging -%}         {{- 'ric-eu-dl-sa-dev-nprd' -}}
-      {%- elif is_layer_data_warehouse -%}  {{- 'ric-eu-dl-vc-dev-nprd' -}}
-      {%- elif is_layer_datamart -%}        {{- 'ric-eu-dl-cl-rev-etl-dev-nprd' -}}
-      {%- elif is_seeds -%}                 {{- 'ric-eu-dl-sa-dev-nprd' -}}
+      {%- if   is_layer_staging -%}         {{- 'dbt-demo-aaa' -}}
+      {%- elif is_layer_data_warehouse -%}  {{- 'dbt-demo-aaa' -}}
+      {%- elif is_layer_datamart -%}        {{- 'dbt-demo-aaa' -}}
+      {%- elif is_seeds -%}                 {{- 'dbt-demo-aaa' -}}
       {%- elif is_test -%}                  {{- target.database | trim -}}
       {%- else -%}                          {{ exceptions.raise_compiler_error(error_unresolve_message) }}
       {%- endif -%}

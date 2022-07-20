@@ -1,12 +1,12 @@
 # Nams your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: "addastra_dbt_demo"
+name: "astrafy_dbt_demo"
 version: "1.1.1"
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: "addastra"
+profile: "astrafy"
 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
@@ -27,29 +27,30 @@ clean-targets: # folders to be removed by `dbt clean`
 require-dbt-version: "=1.1.1"
 
 quoting:
-  database: false
-  schema: false
-  identifier: false
+  database: true
+  schema: true
+  identifier: true
 
 vars:
   'dbt_date:time_zone': "Europe/Paris"
 
 models:
-  addastra_dbt_demo:
-    +pre-hook:
-      - '{{ dl_macros.check_dataset_existence() }}'
-    +persist_docs:
-      relation: true
-      columns: true
+  astrafy_dbt_demo:
     jaffle_shop:
       +tags:
         - jaffle_shop
       staging:
+        +persist_docs:
+          relation: true
+          columns: true
         +materialized: table
-      vault_client:
+      datamart:
         +materialized: table
 
     billing:
+      +persist_docs:
+        relation: true
+        columns: true
       +tags:
         - billing
       staging:
@@ -58,7 +59,7 @@ models:
         +materialized: table
 
 seeds:
-  addastra_dbt_demo:
+  astrafy_dbt_demo:
     +persist_docs:
       relation: true
       columns: true

@@ -4,31 +4,31 @@ config:
   printer_width: 80
   send_anonymous_usage_stats: false
 
-addastra:
+astrafy:
   target: sbx
   outputs:
     sbx:
       type: bigquery
       method: oauth
-      project: billing-addastra
-      execution_project: billing-addastra
+      project: dbt-demo-aaa
+      execution_project: dbt-demo-aaa
       schema: na
       threads: 4
       timeout_seconds: 300
       location: EU
       priority: interactive
       retries: 1
-      impersonate_service_account: sa-composer-sbx@ric-eu-dl-ops-dev-nprd.iam.gserviceaccount.com
+      impersonate_service_account: sa-dbt-demo@dbt-demo-aaa.iam.gserviceaccount.com
 
     prd:
       type: bigquery
       method: oauth
-      project: billing-addastra
-      execution_project: billing-addastra
+      project: dbt-demo-aaa
+      execution_project: dbt-demo-aaa
       schema: na
       threads: 4
       timeout_seconds: 300
       location: EU
       priority: interactive
       retries: 1
-      impersonate_service_account: sa-composer-sbx@ric-eu-dl-ops-dev-nprd.iam.gserviceaccount.com
+      impersonate_service_account: sa-dbt-demo@dbt-demo-aaa.iam.gserviceaccount.com
