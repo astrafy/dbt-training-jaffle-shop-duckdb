@@ -19,7 +19,7 @@ repos:
       rev: "v0.16.0"
       hooks:
         - id: terraform-docs-go
-          args: ["markdown", "table", "--output-file", "terraform/README.md", "./"]
+          args: ["markdown", "table", "--output-file", "README.md", "./terraform/"]
     - repo: https://github.com/antonbabenko/pre-commit-terraform
       rev: v1.64.0
       hooks:
