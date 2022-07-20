@@ -24,7 +24,7 @@ clean-targets: # folders to be removed by `dbt clean`
   - "dbt_packages"
   - "logs"
 
-require-dbt-version: "=1.1.1"
+require-dbt-version: [">=1.0.0", "<2.0.0"]
 
 quoting:
   database: true

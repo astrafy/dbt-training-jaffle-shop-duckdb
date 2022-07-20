@@ -1,18 +1,27 @@
+data "terraform_remote_state" "gke_internal" {
+  backend = "remote"
+
+  config = {
+    organization = "astrafy"
+    workspaces = {
+      name = "gke"
+    }
+  }
+}
 
 resource "google_container_node_pool" "dbt" {
-  count      = contains(keys(module.globals.globalvar.env_mapping_project_ops), var.envvar.MYENV) ? 1 : 0
-  project    = var.envvar.PROJECTS["ops_project"]
-  name       = "composer"
-  location   = var.envvar.GKE.zone
-  cluster    = google_container_cluster.primary[0].name
-  node_count = 2
+  project    = var.project_id_gke
+  name       = var.node_pool_dbt_config["name"]
+  location   = var.google_cloud_zone
+  cluster    = data.terraform_remote_state.gke_internal.outputs.gke_cluster_name
+  node_count = var.node_pool_dbt_config["node_count"]
 
   node_config {
-    preemptible  = contains(["uat"], var.envvar.MYENV) ? true : false
-    machine_type = var.envvar.COMPOSER.node_config_k8s_machine_type
+    preemptible  = true
+    machine_type = var.node_pool_dbt_config["machine_type"]
 
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    service_account = var.cloud_composer_sa
+    service_account = data.terraform_remote_state.gke_internal.outputs.gke_service_account
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
@@ -20,7 +29,7 @@ resource "google_container_node_pool" "dbt" {
 
   management {
     auto_repair  = true
-    auto_upgrade = true
+    auto_upgrade = false
   }
 
   upgrade_settings {
@@ -29,9 +38,9 @@ resource "google_container_node_pool" "dbt" {
   }
 
   autoscaling {
-    max_node_count = var.envvar.GKE.max_node_count
-    min_node_count = var.envvar.GKE.min_node_count
+    min_node_count = var.node_pool_dbt_config["min_node_count"]
+    max_node_count = var.node_pool_dbt_config["max_node_count"]
   }
 
-  max_pods_per_node = var.envvar.GKE.max_pods_per_node
+  max_pods_per_node = var.node_pool_dbt_config["max_pods_per_node"]
 }
