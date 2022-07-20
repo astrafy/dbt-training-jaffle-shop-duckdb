@@ -1,4 +1,4 @@
-node_pool_mds_config = {
+node_pool_dbt_config = {
   name           = "dbt"
   node_count     = 1
   min_node_count = 1
