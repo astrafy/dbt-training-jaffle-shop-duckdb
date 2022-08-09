@@ -33,6 +33,11 @@ quoting:
 
 vars:
   'dbt_date:time_zone': "Europe/Paris"
+  dbt_artifacts_database: "dbt-demo-aaa"
+  dbt_artifacts_schema: "dbt_artifacts"
+
+
+on-run-end: "{{ dbt_artifacts.upload_results(results) }}"
 
 models:
   astrafy_dbt_demo:

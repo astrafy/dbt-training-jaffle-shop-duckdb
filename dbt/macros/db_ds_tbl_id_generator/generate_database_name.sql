@@ -13,27 +13,21 @@
     {% set is_layer_staging = ('staging' in node.fqn) %}
     {% set is_layer_data_warehouse = ('data_warehouse' in node.fqn) %}
     {% set is_layer_datamart = ('datamart' in node.fqn) %}
+    {% set is_dbt_artifact = ('dbt_artifacts' in node.raw_sql) or ('dbt_artifacts' in node.package_name) %}
 
     {%- set error_unresolve_message -%}
         {{ node.resource_type | capitalize }} '{{ node.unique_id }}' unable to resolve database name.
     {%- endset -%}
 
-    {%- if custom_database_name is not none -%}
-        {%- set error_message -%}
-            {{ node.resource_type | capitalize }} '{{ node.unique_id }}' has a database configured. This is not allowed.
-        {%- endset -%}
-        {{ exceptions.raise_compiler_error(error_message) }}
-
-    {% elif node.resource_type == 'analysis' %} {{- target.database | trim -}}
-
     {# SANDBOX (target: sbx) #}
 
-    {% elif is_sandbox %}
+    {% if is_sandbox %}
       {%- if   is_layer_staging -%}         {{- 'dbt-demo-aaa' -}}
       {%- elif is_layer_data_warehouse -%}  {{- 'dbt-demo-aaa'-}}
       {%- elif is_layer_datamart -%}        {{- 'dbt-demo-aaa' -}}
       {%- elif is_seeds -%}                 {{- 'dbt-demo-aaa' -}}
       {%- elif is_test -%}                  {{- target.database | trim -}}
+      {%- elif is_dbt_artifact -%}          {{- var('dbt_artifacts_database') | trim -}}
       {%- else -%}                          {{ exceptions.raise_compiler_error(error_unresolve_message) }}
       {%- endif -%}
 
@@ -45,6 +39,7 @@
       {%- elif is_layer_datamart -%}        {{- 'dbt-demo-aaa' -}}
       {%- elif is_seeds -%}                 {{- 'dbt-demo-aaa' -}}
       {%- elif is_test -%}                  {{- target.database | trim -}}
+      {%- elif is_dbt_artifact -%}          {{- custom_database_name | trim -}}
       {%- else -%}                          {{ exceptions.raise_compiler_error(error_unresolve_message) }}
       {%- endif -%}
 
@@ -55,6 +50,7 @@
       {%- elif is_layer_datamart -%}        {{- 'dbt-demo-aaa' -}}
       {%- elif is_seeds -%}                 {{- 'dbt-demo-aaa' -}}
       {%- elif is_test -%}                  {{- target.database | trim -}}
+      {%- elif is_dbt_artifact -%}          {{- custom_database_name | trim -}}
       {%- else -%}                          {{ exceptions.raise_compiler_error(error_unresolve_message) }}
       {%- endif -%}
 

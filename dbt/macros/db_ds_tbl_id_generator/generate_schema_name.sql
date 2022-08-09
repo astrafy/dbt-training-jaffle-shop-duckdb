@@ -1,5 +1,9 @@
 {% macro generate_schema_name(custom_schema_name=none, node=none) -%}
 
+    {%- if custom_schema_name is not none -%}
+        {% set is_dbt_artifact = ('dbt_artifacts' in node.raw_sql) or ('dbt_artifacts' in node.package_name) %}
+    {%- endif -%}
+
     {# handling the udf #}
     {%- if custom_schema_name =='bqdts_udf' -%}
         {{ custom_schema_name -}}
@@ -11,8 +15,8 @@
 
     {%- elif custom_schema_name is not none -%}
         {# handling test #}
-        {%- if node.resource_type == 'test' -%}
-            {{- 'bqdts_' ~ node.fqn[1] -}}
+        {%- if node.resource_type == 'test' -%}  {{- 'bqdts_' ~ node.fqn[1] -}}
+        {%- elif is_dbt_artifact -%}  {{- var('dbt_artifacts_schema') | trim -}}
         {%- else -%}
             {%- set error_message -%}
             {{ node.resource_type | capitalize }} '{{ node.unique_id }}' has a schema configured. This is not allowed.
