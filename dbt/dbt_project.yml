@@ -26,6 +26,10 @@ clean-targets: # folders to be removed by `dbt clean`
 
 require-dbt-version: [">=1.0.0", "<2.0.0"]
 
+query-comment:
+  comment: "{{ query_comment(node) }}"
+  job-label: True
+
 quoting:
   database: true
   schema: true
