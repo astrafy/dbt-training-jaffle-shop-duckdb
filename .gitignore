@@ -177,3 +177,5 @@ cython_debug/
 .terraform.lock.hcl
 .terraform/
 logs/
+
+dbt_packages/
