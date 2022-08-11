@@ -13,7 +13,7 @@
     {% set is_layer_staging = ('staging' in node.fqn) %}
     {% set is_layer_data_warehouse = ('data_warehouse' in node.fqn) %}
     {% set is_layer_datamart = ('datamart' in node.fqn) %}
-    {% set is_dbt_artifact = ('dbt_artifacts' in node.package_name) | as_bool %}
+    {% set is_dbt_artifact = (('dbt_artifacts' in node.package_name) or ('dbt_artifacts' in node.raw_sql)) | as_bool %}
 
 
     {%- set error_unresolve_message -%}

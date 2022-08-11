@@ -44,6 +44,9 @@ vars:
 on-run-end: "{{ dbt_artifacts.upload_results(results) }}"
 
 models:
+  dbt_artifacts:
+    staging:
+      +materialized: incremental
   astrafy_dbt_demo:
     jaffle_shop:
       +tags:
