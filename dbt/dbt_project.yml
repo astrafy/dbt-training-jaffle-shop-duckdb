@@ -40,8 +40,7 @@ vars:
   dbt_artifacts_database: "dbt-demo-aaa"
   dbt_artifacts_schema: "dbt_artifacts"
 
-
-on-run-end: "{{ dbt_artifacts.upload_results(results) }}"
+on-run-end: "{% if not var('artifact', False) %}{{ dbt_artifacts.upload_results(results) }}{% endif %}"
 
 models:
   dbt_artifacts:
