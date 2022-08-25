@@ -14,6 +14,7 @@
     {%- elif custom_schema_name is not none -%}
         {# handling test #}
         {%- if node.resource_type == 'test' -%}  {{- 'bqdts_' ~ node.fqn[1] -}}
+        {%- elif 're_data' in node.fqn  %}  {{- 'bqdts_re_data' -}}
         {%- else -%}
             {%- set error_message -%}
             {{ node.resource_type | capitalize }} '{{ node.unique_id }}' has a schema configured. This is not allowed.

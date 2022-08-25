@@ -9,6 +9,7 @@
     {% set is_prd =         (target.name in ['prd']) %}
     {% set is_seeds =       (node.resource_type == 'seed') %}
     {% set is_test =        (node.resource_type == 'test') %}
+    {% set is_re_data =     ('re_data' in node.fqn)  %}
 
     {% set is_layer_staging = ('staging' in node.fqn) %}
     {% set is_layer_data_warehouse = ('data_warehouse' in node.fqn) %}
@@ -29,6 +30,7 @@
       {%- elif is_seeds -%}                 {{- 'dbt-demo-aaa' -}}
       {%- elif is_test -%}                  {{- target.database | trim -}}
       {%- elif is_dbt_artifact -%}          {{- var('dbt_artifacts_database') | trim -}}
+      {%- elif is_re_data -%}               {{- 'dbt-demo-aaa' -}}
       {%- else -%}                          {{ exceptions.raise_compiler_error(error_unresolve_message) }}
       {%- endif -%}
 
