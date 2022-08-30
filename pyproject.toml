@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "astrafy-dbt-demo"
+version = "0.1.0"
+description = "Jaffle Shop"
+authors = ["John Doe"]
+
+[tool.poetry.dependencies]
+python = "3.10.5"
+dbt-bigquery = "1.2.0"
+dbt-core = "1.2.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core==1.1.8"]
+build-backend = "poetry.core.masonry.api"
