@@ -16,6 +16,7 @@
 
 | Name | Version |
 |------|---------|
+| <a name="provider_google"></a> [google](#provider\_google) | 4.29.0 |
 | <a name="provider_tfe"></a> [tfe](#provider\_tfe) | 0.37.0 |
 
 ## Modules
@@ -26,6 +27,7 @@ No modules.
 
 | Name | Type |
 |------|------|
+| [google_container_node_pool.dbt](https://registry.terraform.io/providers/hashicorp/google/4.29.0/docs/resources/container_node_pool) | resource |
 | [tfe_outputs.gke](https://registry.terraform.io/providers/hashicorp/tfe/latest/docs/data-sources/outputs) | data source |
 
 ## Inputs
