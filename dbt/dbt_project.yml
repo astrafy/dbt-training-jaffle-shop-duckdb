@@ -41,12 +41,9 @@ vars:
   dbt_artifacts_schema: "dbt_artifacts"
   re_data:save_test_history: true
 
-on-run-end: "{% if not var('artifact', False) %}{{ dbt_artifacts.upload_results(results) }}{% endif %}"
+#on-run-end: "{% if not var('artifact', False) %}{{ dbt_artifacts.upload_results(results) }}{% endif %}"
 
 models:
-  dbt_artifacts:
-    staging:
-      +materialized: incremental
   astrafy_dbt_demo:
     jaffle_shop:
       +tags:
@@ -59,16 +56,11 @@ models:
       datamart:
         +materialized: table
 
-    billing:
-      +persist_docs:
-        relation: true
-        columns: true
-      +tags:
-        - billing
-      staging:
-        +materialized: table
-      vault_client:
-        +materialized: table
+  dbt_artifacts:
+    +enabled: false
+
+  re_data:
+    +enabled: false
 
 seeds:
   astrafy_dbt_demo:
@@ -77,8 +69,8 @@ seeds:
       columns: true
     jaffle_shop:
       +tags: jaffle_shop
-      mapping_iot_devices:
-        +enabled: true
+    unittests:
+      +tags: test
 
 tests:
   +store_failures: true  # all tests
