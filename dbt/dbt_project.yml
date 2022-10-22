@@ -69,7 +69,7 @@ seeds:
       columns: true
     jaffle_shop:
       +tags: jaffle_shop
-    unittests:
+    unittests_mock:
       +tags: test
 
 tests:
