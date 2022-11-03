@@ -13,8 +13,9 @@
 
     {%- elif custom_schema_name is not none -%}
         {# handling test #}
-        {%- if node.resource_type == 'test' -%}  {{- 'bqdts_' ~ node.fqn[0] ~ 'tests' -}}
-        {%- elif 're_data' in node.fqn  %}  {{- 'bqdts_re_data' -}}
+        {%- if node.resource_type == 'test' -%}  {{- 'bqdts_' ~ node.fqn[1] ~ '_tests_' ~ target.name -}}
+        {%- elif 're_data' in node.fqn  %}
+          {{- 'bqdts_' ~ target.name ~ '_re_data' -}}
         {%- else -%}
             {%- set error_message -%}
             {{ node.resource_type | capitalize }} '{{ node.unique_id }}' has a schema configured. This is not allowed.
@@ -23,16 +24,17 @@
         {%- endif -%}
 
     {%- elif custom_schema_name is none and node.path.split('/')[0] == 'dbt_logs' -%}
-        {{- 'bqdts_dbt_logs' -}}
+        {{- 'bqdts_dbt_' ~ target.name ~ '_logs' -}}
 
     {%- elif node.resource_type == 'seed' -%}
-        {{- 'bqdts_mapping' -}}
+        {{- 'bqdts_' ~ target.name ~ '_mapping' -}}
 
+    {# handling dbt_artifacts package #}
     {%- elif custom_schema_name is none and is_dbt_artifact -%}
-        {{- var('dbt_artifacts_schema') | trim -}}
+        {{- 'bqdts_' ~ target.name ~ '_artifacts' -}}
 
     {%- elif custom_schema_name is none -%}
-        {{- 'bqdts_' ~ node.fqn[1] -}}
+        {{- 'bqdts_' ~ target.name ~ '_' ~ node.fqn[1] -}}
     {%- endif -%}
 
 {%- endmacro %}

@@ -9,8 +9,8 @@ metrics:
     calculation_method: average
     expression: amount
     dimensions:
-      - had_discount
-      - order_country
+      - status
+      - had_credit_card_payment
 
 {%- endset %}
 
@@ -18,6 +18,7 @@ select *
 from {{ metrics.develop(
         develop_yml=my_metric_yml,
         grain='month',
-        metric_list=['develop_metric']
+        metric_list=['develop_metric'],
+        dimensions=['status']
         )
     }}

@@ -37,8 +37,6 @@ quoting:
 
 vars:
   'dbt_date:time_zone': "Europe/Paris"
-  dbt_artifacts_database: "dbt-demo-aaa"
-  dbt_artifacts_schema: "dbt_artifacts"
   re_data:save_test_history: true
 
 #on-run-end: "{% if not var('artifact', False) %}{{ dbt_artifacts.upload_results(results) }}{% endif %}"
@@ -69,8 +67,6 @@ seeds:
       columns: true
     jaffle_shop:
       +tags: jaffle_shop
-    unittests_mock:
-      +tags: test
 
 tests:
   +store_failures: true  # all tests

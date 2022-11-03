@@ -1,5 +1,7 @@
 packages:
-  - local: '/home/{{ env_var("USER") }}/Desktop/dbt_artifacts_fork'
+#  - local: '/home/{{ env_var("USER") }}/Desktop/dbt_artifacts_fork'
+  - package: brooklyn-data/dbt_artifacts
+    version: 2.2.0
   - package: dbt-labs/dbt_utils
     version: 0.8.0
   - package: re-data/re_data
@@ -10,3 +12,5 @@ packages:
     version: [">=1.3.0", "<1.4.0"]
   - git: "https://github.com/EqualExperts/dbt-unit-testing"
     revision: v0.2.3
+  - git: "https://github.com/dbt-labs/dbt-labs-experimental-features" # git URL
+    subdirectory: "materialized-views"
