@@ -14,3 +14,5 @@ packages:
     revision: v0.2.5
   - git: "https://github.com/dbt-labs/dbt-labs-experimental-features" # git URL
     subdirectory: "materialized-views"
+    revision: "main"
+    warn-unpinned: false
