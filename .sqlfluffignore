@@ -1,0 +1,6 @@
+target/
+dbt_packages/
+macros/
+
+dm_dim_calendar.sql
+billing.sql

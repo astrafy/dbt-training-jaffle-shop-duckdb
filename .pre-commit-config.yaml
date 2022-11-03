@@ -15,60 +15,69 @@ repos:
           - id: check-case-conflict # Check for files that would conflict in case-insensitive filesystems
           - id: check-merge-conflict # Check for files that contain merge conflict strings.
           - id: debug-statements # Check for debugger imports and py37+ `breakpoint()` calls in python source.
-    - repo: https://github.com/terraform-docs/terraform-docs
-      rev: "v0.16.0"
-      hooks:
-        - id: terraform-docs-go
-          args: ["markdown", "table", "--output-file", "README.md", "./terraform/envs/ops/"]
-        - id: terraform-docs-go
-          args: [ "markdown", "table", "--output-file", "README.md", "./terraform/envs/dev/" ]
-        - id: terraform-docs-go
-          args: [ "markdown", "table", "--output-file", "README.md", "./terraform/envs/prd/" ]
-    - repo: https://github.com/antonbabenko/pre-commit-terraform
-      rev: v1.64.0
-      hooks:
-        - id: terraform_fmt
-        - id: terraform_validate
+    # - repo: https://github.com/terraform-docs/terraform-docs
+    #   rev: "v0.16.0"
+    #   hooks:
+    #     - id: terraform-docs-go
+    #       args: ["markdown", "table", "--output-file", "README.md", "./terraform/"]
+    # - repo: https://github.com/antonbabenko/pre-commit-terraform
+    #   rev: v1.64.0
+    #   hooks:
+    #     - id: terraform_fmt
+    #     - id: terraform_validate
     - repo: https://github.com/pycqa/isort
       rev: 5.10.1
       hooks:
         - id: isort
           name: isort (python)
           types: [ file, python ]
-    -   repo: https://github.com/psf/black
-        rev: 22.6.0
-        hooks:
+    - repo: https://github.com/psf/black
+      rev: 22.6.0
+      hooks:
         - id: black
           name: "Black"
           types: [file, python]
-    -   repo: https://gitlab.com/pycqa/flake8
-        rev: 4.0.1
-        hooks:
+    - repo: https://gitlab.com/pycqa/flake8
+      rev: 4.0.1
+      hooks:
         - id: flake8
           name: "Flake8"
           types: [ file, python ]
-    -   repo: https://github.com/PyCQA/bandit
-        rev: 1.7.4
-        hooks:
+    - repo: https://github.com/PyCQA/bandit
+      rev: 1.7.4
+      hooks:
         - id: bandit
           name: "bandit"
           types: [ file, python ]
-    -   repo: https://github.com/pycqa/pydocstyle
-        rev: 6.1.1 # pick a git hash / tag to point to
-        hooks:
+    - repo: https://github.com/pycqa/pydocstyle
+      rev: 6.1.1 # pick a git hash / tag to point to
+      hooks:
         -   id: pydocstyle
             name: "pydocstyle"
             types: [ file, python ]
-    - repo: https://github.com/bridgecrewio/checkov.git
-      rev: '2.1.61'
-      hooks:
-        -   id: checkov
-            name: Checkov
-            description: This hook runs checkov.
-            entry: checkov -d .
-            language: python
-            pass_filenames: false
-            always_run: false
-            files: \.tf$
-            exclude: \.+.terraform\/.*$
-            require_serial: true
+#    - repo: https://github.com/sqlfluff/sqlfluff
+#      rev: 1.3.2
+#      hooks:
+#        - id: sqlfluff-lint
+#          args: ["dbt"]
+          # For dbt projects, this installs the dbt "extras".
+          # You will need to select the relevant dbt adapter for your dialect
+          # (https://docs.getdbt.com/docs/available-adapters):
+#          additional_dependencies: ['dbt-bigquery==1.2.0', 'sqlfluff-templater-dbt==1.3.2']
+#        - id: sqlfluff-fix
+          # Arbitrary arguments to show an example
+          # args: [--rules, "L003,L014"]
+          # additional_dependencies: ['dbt-bigquery==1.2.0', 'sqlfluff-templater-dbt']
+    # - repo: https://github.com/bridgecrewio/checkov.git
+    #   rev: '2.1.61'
+    #   hooks:
+    #     -   id: checkov
+    #         name: Checkov
+    #         description: This hook runs checkov.
+    #         entry: checkov -d .
+    #         language: python
+    #         pass_filenames: false
+    #         always_run: false
+    #         files: \.tf$
+    #         exclude: \.+.terraform\/.*$
+    #         require_serial: true
