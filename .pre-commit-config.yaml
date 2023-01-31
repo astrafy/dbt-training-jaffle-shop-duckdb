@@ -15,16 +15,6 @@ repos:
           - id: check-case-conflict # Check for files that would conflict in case-insensitive filesystems
           - id: check-merge-conflict # Check for files that contain merge conflict strings.
           - id: debug-statements # Check for debugger imports and py37+ `breakpoint()` calls in python source.
-    # - repo: https://github.com/terraform-docs/terraform-docs
-    #   rev: "v0.16.0"
-    #   hooks:
-    #     - id: terraform-docs-go
-    #       args: ["markdown", "table", "--output-file", "README.md", "./terraform/"]
-    # - repo: https://github.com/antonbabenko/pre-commit-terraform
-    #   rev: v1.64.0
-    #   hooks:
-    #     - id: terraform_fmt
-    #     - id: terraform_validate
     - repo: https://github.com/pycqa/isort
       rev: 5.10.1
       hooks:
@@ -81,3 +71,4 @@ repos:
     #         files: \.tf$
     #         exclude: \.+.terraform\/.*$
     #         require_serial: true
+

@@ -24,7 +24,7 @@ clean-targets: # folders to be removed by `dbt clean`
   - "dbt_packages"
   - "logs"
 
-require-dbt-version: [">=1.3.0", "<2.0.0"]
+require-dbt-version: [">=1.4.0", "<2.0.0"]
 
 query-comment:
   comment: "{{ query_comment(node) }}"
@@ -42,6 +42,7 @@ vars:
 #on-run-end: "{% if not var('artifact', False) %}{{ dbt_artifacts.upload_results(results) }}{% endif %}"
 
 models:
+  +tags: demo_dbt
   astrafy_dbt_demo:
     jaffle_shop:
       +tags:
@@ -54,13 +55,17 @@ models:
       datamart:
         +materialized: table
 
+  elementary:
+    +enabled: true
+
+  dbt_project_evaluator:
+    +enabled: true
+
   dbt_artifacts:
     +enabled: false
 
-  re_data:
-    +enabled: false
-
 seeds:
+  +tags: demo_dbt
   astrafy_dbt_demo:
     +persist_docs:
       relation: true
@@ -69,4 +74,5 @@ seeds:
       +tags: jaffle_shop
 
 tests:
+  +tags: demo_dbt
   +store_failures: true  # all tests
