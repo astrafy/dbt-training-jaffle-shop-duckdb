@@ -1,17 +1,16 @@
 packages:
-#  - local: '/home/{{ env_var("USER") }}/Desktop/dbt_artifacts_fork'
   - package: brooklyn-data/dbt_artifacts
     version: 2.2.2
   - package: dbt-labs/dbt_project_evaluator
-    version: 0.4.0
+    version: 0.4.1
   - package: dbt-labs/dbt_utils
     version: 1.0.0
   - package: elementary-data/elementary
-    version: 0.6.12
+    version: 0.7.5
   - package: calogica/dbt_expectations
     version: 0.8.2
   - package: dbt-labs/metrics
-    version: "1.4.0"
+    version: "1.4.1"
   - git: "https://github.com/EqualExperts/dbt-unit-testing"
     revision: v0.2.5
   - git: "https://github.com/dbt-labs/dbt-labs-experimental-features" # git URL
