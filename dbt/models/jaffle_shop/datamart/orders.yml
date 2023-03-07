@@ -3,7 +3,10 @@ version: 2
 models:
   - name: orders
     description: This table has basic information about orders, as well as some derived facts based on payments
-
+    tests:
+      - dbt_expectations.expect_table_row_count_to_be_between:
+          min_value: 1
+          max_value: 100
     columns:
       - name: order_id
         tests:
@@ -29,6 +32,7 @@ models:
         description: Total amount (AUD) of the order
         tests:
           - not_null
+          - dbt_expectations.expect_column_to_exist
 
       - name: credit_card_amount
         description: Amount of the order (AUD) paid for by credit card

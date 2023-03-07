@@ -74,7 +74,7 @@ unwrap_wrapped_queries = true
 apply_dbt_builtins = true
 
 [sqlfluff:templater:dbt]
-project_dir = dbt/data_products/finops/
+project_dir = dbt/
 profiles_dir = dbt/
 profile = astrafy
-target = dev
+target = sbx

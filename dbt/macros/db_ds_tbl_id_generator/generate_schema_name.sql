@@ -1,8 +1,6 @@
 {% macro generate_schema_name(custom_schema_name=none, node=none) -%}
 
-    {% set is_elementary =     ('elementary' in node.fqn[0])  %}
-    {% set is_project_evaluator = ('dbt_project_evaluator' in node.fqn) %}
-    {% set is_dbt_artifact = ('dbt_artifacts' in node.package_name) | as_bool %}
+    {# Environments helper variables #}
     {% set is_sbx =         ('sbx' in target.name ) %}
     {% set is_prd =         ('prd' in target.name ) %}
 
@@ -10,9 +8,10 @@
         {% set suffix =     "sbx" %}
     {% elif is_prd %}
         {% set suffix =     "prd" %}
-    {%- else -%}
-      {{ exceptions.raise_compiler_error(error_unresolve_message) }}
     {%- endif -%}
+
+    {% set is_elementary =     ('elementary' in node.fqn[0])  %}
+    {% set is_project_evaluator = ('dbt_project_evaluator' in node.fqn) %}
 
     {%- if custom_schema_name is not none -%}
         {# handling test #}

@@ -24,7 +24,7 @@ clean-targets: # folders to be removed by `dbt clean`
   - "dbt_packages"
   - "logs"
 
-require-dbt-version: [">=1.4.0", "<2.0.0"]
+require-dbt-version: [">=1.3.0", "<2.0.0"]
 
 query-comment:
   comment: "{{ query_comment(node) }}"
@@ -37,9 +37,6 @@ quoting:
 
 vars:
   'dbt_date:time_zone': "Europe/Paris"
-  re_data:save_test_history: true
-
-#on-run-end: "{% if not var('artifact', False) %}{{ dbt_artifacts.upload_results(results) }}{% endif %}"
 
 models:
   +tags: demo_dbt
@@ -61,8 +58,6 @@ models:
   dbt_project_evaluator:
     +enabled: true
 
-  dbt_artifacts:
-    +enabled: false
 
 seeds:
   +tags: demo_dbt

@@ -182,3 +182,6 @@ dbt_packages/
 
 poetry.lock
 .python-version
+
+elementary_output.json
+elementary_report.html

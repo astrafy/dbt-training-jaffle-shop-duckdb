@@ -13,7 +13,7 @@ astrafy:
       project: dbt-demo-aaa
       execution_project: dbt-demo-aaa
       schema: na
-      threads: 4
+      threads: 8
       timeout_seconds: 300
       location: EU
       priority: interactive
@@ -26,9 +26,23 @@ astrafy:
       project: dbt-demo-aaa
       execution_project: dbt-demo-aaa
       schema: na
-      threads: 4
+      threads: 8
       timeout_seconds: 300
       location: EU
       priority: interactive
       retries: 1
       impersonate_service_account: sa-dbt-demo@dbt-demo-aaa.iam.gserviceaccount.com
+
+elementary:
+  outputs:
+    default:
+      type: bigquery
+
+      ## Service account auth, other options require other configs ##
+      method: oauth
+
+      project: dbt-demo-aaa
+      dataset: bqdts_sbxdemo_dbt_elementary
+      threads: 8
+      location: EU
+      priority: interactive
