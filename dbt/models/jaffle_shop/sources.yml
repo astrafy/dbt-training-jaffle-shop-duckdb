@@ -7,12 +7,15 @@ sources:
     loader: gcp
     database: dbt-demo-aaa
     schema: astrafy_public_eu
+
     tables:
       - name: balances
         description: 'Table with current balance for each ethereum address'
         columns:
           - name: address
             description: Address
+            tests:
+              - not_null
           - name: eth_balance
             description: Ether balance
 

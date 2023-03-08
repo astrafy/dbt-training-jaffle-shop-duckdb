@@ -6,7 +6,7 @@ selectors:
     union:
       - method: path
         value: models/jaffle_shop/staging
-- name: dw
+- name: intermediate
   description: >
     Runs all the models in the intermediate data layer
   definition:
@@ -20,3 +20,13 @@ selectors:
     union:
       - method: path
         value: models/jaffle_shop/datamart
+- name: all_generic_test
+  description: >
+    all jaffle shop except unit test
+  definition:
+    union:
+      - method: tag
+        value: jaffle_shop
+      - exclude:
+         - method: tag
+           value: unit-test

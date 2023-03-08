@@ -1,8 +1,8 @@
 version: 2
 
 exposures:
-  - name: weekly_jaffle_metrics
-    label: Jaffles by the Week
+  - name: jaffle_dashboard
+    label: Jaffles orders
     type: dashboard
     maturity: high
     url: 'https://lookerstudio.google.com/reporting/e3a42983-7de0-4e07-89eb-f0fc44a99d5c'
