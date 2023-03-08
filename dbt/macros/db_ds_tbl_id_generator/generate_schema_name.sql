@@ -31,11 +31,11 @@
 
     {# handling elementary #}
     {%- elif custom_schema_name is none and is_elementary -%}
-        {{- 'bqdts_' ~ suffix ~ node.tags[0] ~ '_elementary' -}}
+        {{- 'bqdts_' ~ suffix ~ '_' ~ node.tags[0] ~ '_elementary' -}}
 
     {# handling dbt project evaluator #}
     {%- elif custom_schema_name is none and is_project_evaluator -%}
-        {{- 'bqdts_' ~ suffix ~ node.tags[0] ~ '_project_evaluator' -}}
+        {{- 'bqdts_' ~ suffix ~ '_' ~ node.tags[0] ~ '_project_evaluator' -}}
 
     {# handling dbt_artifacts package #}
     {%- elif custom_schema_name is none and is_dbt_artifact -%}

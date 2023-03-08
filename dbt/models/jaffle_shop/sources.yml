@@ -5,8 +5,8 @@ sources:
   - name: crypto
     description: Crypto Ethereum tables
     loader: gcp
-    database: bigquery-public-data
-    schema: crypto_ethereum
+    database: dbt-demo-aaa
+    schema: astrafy_public_eu
     tables:
       - name: balances
         description: 'Table with current balance for each ethereum address'

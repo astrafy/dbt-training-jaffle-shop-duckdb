@@ -17,6 +17,7 @@
     {% set is_layer_intermediate = ('intermediate' in node.fqn) and not is_monitoring %}
     {% set is_layer_data_warehouse = ('data_warehouse' in node.fqn) and not is_monitoring %}
     {% set is_layer_datamart = ('datamart' in node.fqn) and not is_monitoring %}
+    {% set is_utilities = ('utilities' in node.fqn) and not is_monitoring %}
 
     {% set is_on_end_hook = ('hooks' in node.fqn) %}
 
@@ -38,6 +39,7 @@
       {%- elif is_layer_intermediate -%}    {{- env_var('GCP_PROJECT') -}}
       {%- elif is_layer_data_warehouse -%}  {{- env_var('GCP_PROJECT') -}}
       {%- elif is_layer_datamart -%}        {{- env_var('GCP_PROJECT') -}}
+      {%- elif is_utilities -%}             {{- env_var('GCP_PROJECT') -}}
       {%- elif is_seeds -%}                 {{- env_var('GCP_PROJECT') -}}
       {%- elif is_test -%}                  {{- env_var('GCP_PROJECT') -}}
 
@@ -55,6 +57,7 @@
       {%- elif is_layer_intermediate -%}    {{- env_var('GCP_PROJECT') -}}
       {%- elif is_layer_data_warehouse -%}  {{- env_var('GCP_PROJECT') -}}
       {%- elif is_layer_datamart -%}        {{- env_var('GCP_PROJECT') -}}
+      {%- elif is_utilities -%}             {{- env_var('GCP_PROJECT') -}}
       {%- elif is_seeds -%}                 {{- env_var('GCP_PROJECT') -}}
       {%- elif is_test -%}                  {{- env_var('GCP_PROJECT') -}}
 

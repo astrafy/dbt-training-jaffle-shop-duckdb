@@ -1,0 +1,17 @@
+version: 2
+
+exposures:
+  - name: weekly_jaffle_metrics
+    label: Jaffles by the Week
+    type: dashboard
+    maturity: high
+    url: 'https://lookerstudio.google.com/reporting/e3a42983-7de0-4e07-89eb-f0fc44a99d5c'
+    description: >
+      Generic dashboard regarding the Jaffle shop orders
+
+    depends_on:
+      - ref('orders')
+
+    owner:
+      name: Charles Verleyen
+      email: charles@astrafy.io

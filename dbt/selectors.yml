@@ -1,0 +1,22 @@
+selectors:
+- name: stg
+  description: >
+    Runs all the models in the staging data layer
+  definition:
+    union:
+      - method: path
+        value: models/jaffle_shop/staging
+- name: dw
+  description: >
+    Runs all the models in the intermediate data layer
+  definition:
+    union:
+      - method: path
+        value: models/jaffle_shop/intermediate
+- name: dm
+  description: >
+    Runs all the models in the datamart data layer
+  definition:
+    union:
+      - method: path
+        value: models/jaffle_shop/datamart
