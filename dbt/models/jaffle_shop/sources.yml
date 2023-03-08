@@ -1,0 +1,37 @@
+version: 2
+
+sources:
+
+  - name: crypto
+    description: Crypto Ethereum tables
+    loader: gcp
+    database: bigquery-public-data
+    schema: crypto_ethereum
+    tables:
+      - name: balances
+        description: 'Table with current balance for each ethereum address'
+        columns:
+          - name: address
+            description: Address
+          - name: eth_balance
+            description: Ether balance
+
+      - name: contracts
+        description: 'Table with information regarding Ethereum contracts'
+        columns:
+          - name: address
+            description: Address
+          - name: bytecode
+            description: Ether balance
+          - name: function_sighashes
+            description: "{{doc('function_sighashes')}}"
+          - name: is_erc20
+            description: "{{doc('is_erc20')}}"
+          - name: is_erc721
+            description: "{{doc('is_erc721')}}"
+          - name: block_timestamp
+            description: Timestamp of the block where this contract was created
+          - name: block_number
+            description: Block number where this contract was created
+          - name: block_hash
+            description: Hash of the block where this contract was created
