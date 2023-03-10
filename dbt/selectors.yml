@@ -1,4 +1,5 @@
 selectors:
+
 - name: stg
   description: >
     Runs all the models in the staging data layer
@@ -6,6 +7,7 @@ selectors:
     union:
       - method: path
         value: models/jaffle_shop/staging
+
 - name: intermediate
   description: >
     Runs all the models in the intermediate data layer
@@ -13,6 +15,7 @@ selectors:
     union:
       - method: path
         value: models/jaffle_shop/intermediate
+
 - name: dm
   description: >
     Runs all the models in the datamart data layer
@@ -20,6 +23,7 @@ selectors:
     union:
       - method: path
         value: models/jaffle_shop/datamart
+
 - name: all_generic_test
   description: >
     all jaffle shop except unit test

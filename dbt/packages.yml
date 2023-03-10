@@ -8,7 +8,7 @@ packages:
   - package: calogica/dbt_expectations
     version: 0.8.2
   - package: dbt-labs/metrics
-    version: "1.4.1"
+    version: 1.4.1
   - git: "https://github.com/EqualExperts/dbt-unit-testing"
     revision: v0.2.7
   - git: "https://github.com/dbt-labs/dbt-labs-experimental-features" # git URL
