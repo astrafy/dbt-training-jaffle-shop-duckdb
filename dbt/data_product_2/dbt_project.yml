@@ -39,11 +39,11 @@ vars:
   'dbt_date:time_zone': "Europe/Paris"
 
 models:
-  +tags: demo_dbt
+  +tags: jaffle_dp_2
   jaffle_dp_2:
     jaffle_shop:
       +tags:
-        - jaffle_shop
+        - jaffle_dp_2
       staging:
         +persist_docs:
           relation: true

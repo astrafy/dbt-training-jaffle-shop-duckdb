@@ -39,11 +39,11 @@ vars:
   'dbt_date:time_zone': "Europe/Paris"
 
 models:
-  +tags: demo_dbt
+  +tags: jaffle_dp_1
   jaffle_dp_1:
     jaffle_shop:
       +tags:
-        - jaffle_shop
+        - jaffle_dp_1
       staging:
         +persist_docs:
           relation: true
@@ -63,12 +63,12 @@ seeds:
   +tags: demo_dbt
   +docs:
     node_color: "#138D75"
-  astrafy_dbt_demo:
+  jaffle_dp_1:
     +persist_docs:
       relation: true
       columns: true
     jaffle_shop:
-      +tags: jaffle_shop
+      +tags: jaffle_dp_1
 
 tests:
   +tags: demo_dbt
