@@ -1,16 +1,16 @@
 [tool.poetry]
 name = "astrafy-dbt-demo"
 version = "0.1.0"
-description = "Jaffle Shop"
+description = "Jaffle Shop - data mesh"
 authors = ["Charles Verleyen"]
 
 [tool.poetry.dependencies]
 python = ">=3.9.0,<3.11"
-dbt-core = "1.4.4"
-dbt-bigquery= "1.4.1"
-google-cloud-storage="2.7.0"
+dbt-core = "1.5.0"
+dbt-bigquery= "1.5.0"
+google-cloud-storage="2.9.0"
 google-cloud-core = "2.3.2"
-sqlfluff-templater-dbt="1.4.5"
+sqlfluff-templater-dbt="2.1.0"
 diff-cover="7.0.1"
 pytz="2022.7.1"
 

@@ -1,12 +1,11 @@
 # Nams your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: "astrafy_dbt_demo"
+name: "jaffle_dp_2"
 version: "1.1.1"
-config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: "astrafy"
+profile: "jaffle"
 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
@@ -41,7 +40,7 @@ vars:
 
 models:
   +tags: demo_dbt
-  astrafy_dbt_demo:
+  jaffle_dp_2:
     jaffle_shop:
       +tags:
         - jaffle_shop

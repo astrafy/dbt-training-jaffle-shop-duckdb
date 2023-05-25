@@ -4,7 +4,7 @@ config:
   printer_width: 80
   send_anonymous_usage_stats: false
 
-astrafy:
+jaffle:
   target: sbx
   outputs:
     sbx:
