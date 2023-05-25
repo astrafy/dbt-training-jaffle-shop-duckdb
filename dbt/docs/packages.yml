@@ -1,0 +1,3 @@
+packages:
+  - local: ../common
+  - local: ../data_product_1
