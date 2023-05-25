@@ -53,6 +53,12 @@ This dbt project comes with two targets:
 - **sbx** target: it will materialize the models in the sandbox datasets with your $USER prepended to the table names (either file name or alias defined in config)
 - **prd** target: it will materialize the models in the prd datasets with the vanilla table names (either file name or alias defined in config)
 
+By default, the **sbx** target is selected.
+
+You must first run the following command in order to initialize the soruce tables:
+
+```dbt seed```
+
 ---------------------------------------
 
 ### Elementary package:
