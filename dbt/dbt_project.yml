@@ -48,13 +48,9 @@ models:
       staging:
         +persist_docs:
           relation: true
-          columns: true
         +materialized: table
       datamart:
         +materialized: table
-
-  elementary:
-    +enabled: true
 
   dbt_project_evaluator:
     +enabled: true

@@ -5,8 +5,12 @@ config:
   send_anonymous_usage_stats: false
 
 astrafy:
-  target: sbx
+  target: local
   outputs:
+    local:
+      type: duckdb
+      path: 'db.duckdb'
+      schema: main
     sbx:
       type: bigquery
       method: oauth
@@ -32,17 +36,3 @@ astrafy:
       priority: interactive
       retries: 1
 #      impersonate_service_account: sa-dbt-demo@dbt-demo-aaa.iam.gserviceaccount.com
-
-elementary:
-  outputs:
-    default:
-      type: bigquery
-
-      ## Service account auth, other options require other configs ##
-      method: oauth
-
-      project: "{{ env_var('GCP_PROJECT') }}"
-      dataset: bqdts_sbx_demo_dbt_elementary
-      threads: 8
-      location: EU
-      priority: interactive

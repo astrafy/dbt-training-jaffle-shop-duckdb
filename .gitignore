@@ -185,3 +185,7 @@ poetry.lock
 
 elementary_output.json
 elementary_report.html
+
+# DuckDB
+db.duckdb
+.user.yml
