@@ -7,18 +7,61 @@ packages, macros, etc.
 
 
 <p align="center" width="100%">
-    <img width="33%" src="https://seeklogo.com/images/D/dbt-logo-500AB0BAA7-seeklogo.com.png">
-    <img width="33%" src="https://cdn-images-1.medium.com/max/1200/1*0jrqkgFv3U142GxAjUYfMg.png">
+    <img width="25%" src="https://seeklogo.com/images/D/dbt-logo-500AB0BAA7-seeklogo.com.png">
+    <img width="25%" src="https://cdn-images-1.medium.com/max/1200/1*0jrqkgFv3U142GxAjUYfMg.png">
 </p>
 
 
 ## Quickstart
 
-1. Create a python virtual environment in python 3.10.5 named "venv_dbt_training" 
+You can use this repository with `duckdb` or with `bigquery`. 
+Use `duckdb` if you want test `dbt` in general. 
+It requires less setup, works locally on your machine and is a lot faster.
+Use `bigquery` if you want to see `dbt` in action on Google Cloud or you need features there are not yet supported by `duckdb` adapter.
+
+<details>
+<summary>DuckDB</summary>
+
+### `duckdb` quickstart
+
+1. Create a python virtual environment in python 3.10 named "venv_dbt_training" 
 
 2. Install the required dependencies by running the following at the root of the repo:
 ```
-poetry install
+poetry install --with duckdb
+```
+
+3. Assign the dbt profiles from this repository by running the following commands:
+```
+cd dbt
+export DBT_PROFILES_DIR=$(pwd)
+```
+
+4. You are now ready to run dbt commands within the dbt repository.
+
+You can run:
+
+- `dbt deps` to download dependencies
+- `dbt seed` to populate the initial tables with local data (instead of using sources)
+- `dbt compile` to compile your dbt project
+- `dbt run|test|build` to execute and test models
+
+Note that dbt project comes with one `duckdb` target (others relate to `bigquery`):
+
+- **local** target: it will materialize the models in the `db.duckdb` file database. You can access it via `duckcli -D db.duckdb` command.
+
+By default, the **local** target is selected.
+
+</details>
+<details>
+<summary>BigQuery</summary>
+
+### `bigquery` quickstart
+1. Create a python virtual environment in python 3.10 named "venv_dbt_training" 
+
+2. Install the required dependencies by running the following at the root of the repo:
+```
+poetry install --with bigquery
 ```
 
 3. Assign the dbt profiles from this repository by running the following commands:
@@ -48,34 +91,27 @@ export GCP_PROJECT=[Google Cloud Project ID that dbt will use]
 
 6. You are now ready to run dbt commands within the dbt repository.
 
-This dbt project comes with two targets:
+You can run:
+
+- `dbt deps` to download dependencies
+- `dbt seed -t sbx` to populate the initial tables with local data (instead of using sources)
+- `dbt compile -t sbx` to compile your dbt project
+- `dbt run|test|build -t sbx` to execute and test models
+
+This dbt project comes with two `bigquery` targets:
 
 - **sbx** target: it will materialize the models in the sandbox datasets with your $USER prepended to the table names (either file name or alias defined in config)
 - **prd** target: it will materialize the models in the prd datasets with the vanilla table names (either file name or alias defined in config)
 
-By default, the **sbx** target is selected.
+You will need to specify target explicitly while running the commands, because by default, the **local** target is selected (see duckdb section for more info).
 
-You must first run the following command in order to initialize the soruce tables:
 
-```dbt seed```
-
----------------------------------------
+</details>
 
 ### Elementary package:
 
-In order to generate reports for elementary package, you need to install the elementary CLI. You can do so by running
-the following command:
-
-```
-pip install elementary-data
-pip install 'elementary-data[bigquery]'
-```
-
-You can then generate elementary report by going into the dbt folder and running the following command:
-
-```
-edr report
-```
+For `Elementary` instructions and code see `elementary` branch.
+The mainstream repository works with `duckdb` which is not supported by `elementary` yet.
 
 ### Additional references
 

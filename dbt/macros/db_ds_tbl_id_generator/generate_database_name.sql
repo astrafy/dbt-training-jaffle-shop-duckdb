@@ -32,6 +32,10 @@
     {% elif node.resource_type == 'analysis' %}
         {{- target.database | trim -}}
 
+    {% elif target.type == 'duckdb' %}
+        {{- target.database | trim -}}
+    
+
     {# SANDBOX (target: sbx) #}
     {% elif is_sandbox %}
 
