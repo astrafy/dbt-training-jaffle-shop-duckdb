@@ -37,10 +37,6 @@
     {%- elif custom_schema_name is none and is_project_evaluator -%}
         {{- 'bqdts_' ~ suffix ~ '_' ~ node.tags[0] ~ '_project_evaluator' -}}
 
-    {# handling dbt_artifacts package #}
-    {%- elif custom_schema_name is none and is_dbt_artifact -%}
-        {{- 'bqdts_' ~ target.name ~ '_artifacts' -}}
-
     {%- elif custom_schema_name is none -%}
         {{- 'bqdts_' ~ target.name ~ '_' ~ node.tags[0]  -}}
     {%- endif -%}

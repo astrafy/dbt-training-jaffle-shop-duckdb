@@ -8,7 +8,7 @@
     {% set is_project_evaluator = ('dbt_project_evaluator' in node.fqn) %}
     {% set is_elementary =     ('elementary' in node.fqn[0])  %}
     {% set is_metrics =     ('metrics' in node.fqn[0])  %}
-    {% set is_monitoring        = (is_elementary or is_dbt_artifact or is_project_evaluator or is_metrics) %}
+    {% set is_monitoring        = (is_elementary or is_project_evaluator or is_metrics) %}
 
     {# Data layers helpers variables #}
     {% set is_seeds =       (node.resource_type == 'seed') %}
