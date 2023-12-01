@@ -73,7 +73,7 @@ export DBT_PROFILES_DIR=$(pwd)
 4. Activate your Google Cloud account by running the following command:
 ```
 gcloud auth login
-gcloud auth application-default
+gcloud auth application-default login
 ```
 
 You also need to have initialized beforehand gcloud with a default account. You can do this by running
