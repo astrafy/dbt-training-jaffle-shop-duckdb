@@ -110,8 +110,21 @@ You will need to specify target explicitly while running the commands, because b
 
 ### Elementary package:
 
-For `Elementary` instructions and code see `elementary` branch.
-The mainstream repository works with `duckdb` which is not supported by `elementary` yet.
+`duckdb` which is not supported by `elementary` yet.
+
+To run elementary, you first need to initialize the tables with:
+
+```
+dbt run --select elementary
+```
+
+Once done, elementary will then automaticlaly populate the elementary tables with dbt metadata.
+
+In order to visualize elementary results in the UI, you can run the following ocmmand:
+
+```
+edr report
+```
 
 ### Additional references
 

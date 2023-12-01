@@ -42,6 +42,7 @@ models:
   +tags: demo_dbt
   +persist_docs:
     relation: true
+    columns: true
   astrafy_dbt_demo:
     jaffle_shop:
       +tags:
