@@ -40,13 +40,13 @@ vars:
 
 models:
   +tags: demo_dbt
+  +persist_docs:
+    relation: true
   astrafy_dbt_demo:
     jaffle_shop:
       +tags:
         - jaffle_shop
       staging:
-        +persist_docs:
-          relation: true
         +materialized: table
       datamart:
         +materialized: table

@@ -12,6 +12,17 @@
 
     {% set is_elementary =     ('elementary' in node.fqn[0])  %}
     {% set is_project_evaluator = ('dbt_project_evaluator' in node.fqn) %}
+    {% if is_elementary %} {% set package = "_elementary" %}
+    {% elif is_project_evaluator %} {% set package = "_project_evaluator" %}
+    {%- endif -%}
+
+    {%- set error_message_schema_provided -%}
+        {{ node.resource_type | capitalize }} '{{ node.unique_id }}' has a schema configured. This is not allowed.
+    {%- endset -%}
+
+    {%- set error_message_no_rules -%}
+        {{ node.resource_type | capitalize }} '{{ node.unique_id }}' has no rules defined for its schema.
+    {%- endset -%}
 
     {%- if custom_schema_name is not none -%}
         {# handling test #}
@@ -23,22 +34,17 @@
             {{ exceptions.raise_compiler_error(error_message) }}
         {%- endif -%}
 
+    {# Handling schema for dbt packages #}
     {%- elif custom_schema_name is none and node.path.split('/')[0] == 'dbt_logs' -%}
-        {{- 'bqdts_dbt_' ~ target.name ~ '_logs' -}}
-
-    {%- elif node.resource_type == 'seed' -%}
-        {{- 'bqdts_' ~ target.name ~ '_mapping' -}}
-
-    {# handling elementary #}
-    {%- elif custom_schema_name is none and is_elementary -%}
-        {{- 'bqdts_' ~ suffix ~ '_' ~ node.tags[0] ~ '_elementary' -}}
-
-    {# handling dbt project evaluator #}
-    {%- elif custom_schema_name is none and is_project_evaluator -%}
-        {{- 'bqdts_' ~ suffix ~ '_' ~ node.tags[0] ~ '_project_evaluator' -}}
+        {{- 'bqdts_dbt_logs' -}}
+    {%- elif node.resource_type == 'seed' and not is_project_evaluator -%}
+        {{- 'bqdts_mapping' -}}
+    {%- elif custom_schema_name is none and (is_elementary or is_project_evaluator) -%}
+        {{- 'bqdts_' ~ node.tags[0] ~ package -}}
 
     {%- elif custom_schema_name is none -%}
-        {{- 'bqdts_' ~ target.name ~ '_' ~ node.tags[0]  -}}
+        {{- 'bqdts_' ~ node.tags[0] -}}
     {%- endif -%}
 
 {%- endmacro %}
+

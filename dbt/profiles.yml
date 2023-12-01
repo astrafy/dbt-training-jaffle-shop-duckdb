@@ -5,7 +5,7 @@ config:
   send_anonymous_usage_stats: false
 
 astrafy:
-  target: local
+  target: sbx
   outputs:
     local:
       type: duckdb
